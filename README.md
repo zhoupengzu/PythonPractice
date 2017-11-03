@@ -37,3 +37,20 @@ else:
 7、输出
 print，如果在print后添加"，"号则不换行输出，否则换行输出
 
+二、数据类型
+有数字（Number）、字符串（String）、列表（List）、元祖（Tuple）、字典（Dictionary）
+
+1、定义变量
+定义变量不需要指出类型，赋值的时候也不需要，见type_01s
+
+2、数字Number，见type_02
+支持int、long、float和complex（复数）
+
+3、字符串String，见type_03
+
+4、列表(即数组)，见type_04
+
+5、元祖，见type_05
+和列表类似，但是不能更新内容，即只读的
+
+6、字典，见type_06
