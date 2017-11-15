@@ -132,3 +132,12 @@ def functionName():
 可变类型：类似 c++ 的引用传递，如 列表，字典。如 fun（la），则是将 la 真正的传过去，修改后fun外部的la也会受影响
 参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值
 参数允许设置默认值
+
+八、别名
+import 模块名 as 别名
+如：import cStringIO as StringIO 表示将cStringIO导入并起别名StringIO
+如果导入失败，会报错误，可以捕获这种错误
+try:
+    import cStringIO as StringIO
+except ImportError: # 导入失败会捕获到ImportError
+    import StringIO
