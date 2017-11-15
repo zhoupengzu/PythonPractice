@@ -8,6 +8,9 @@ class Animal:
     def run(self):
         print "Animal is running"
 
+    def duoTai(self, animal):  #多态
+        animal.run()
+
 
 class Dog(Animal):     #小括号里的表示继承的父类
     def eat(self):     #添加自己的方法
@@ -31,3 +34,7 @@ cat = Cat()
 cat.run()
 
 print isinstance(dog, Animal)
+
+'多态测试'
+dog.duoTai(dog)
+cat.duoTai(cat)
