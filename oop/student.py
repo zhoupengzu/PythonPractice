@@ -9,6 +9,9 @@ class Student:
     # def __init__(self):
     #     self.name = "default"
     #     self.score = 0
+    def printStuInfo(self):
+        print "姓名：%s,分数：%s" % (self.name, self.score)
 
 stu = Student("zhoupengzu",99)
 print "姓名：%s,分数：%s" % (stu.name,stu.score)
+stu.printStuInfo()
