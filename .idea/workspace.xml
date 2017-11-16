@@ -21,14 +21,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request_03.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="request_03.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Request/request_03.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+            <state relative-caret-position="169">
+              <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
               <folding>
                 <element signature="e#16#27#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="request_04.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Request/request_04.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,7 +68,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hello_word.py" />
         <option value="$PROJECT_DIR$/type_01.py" />
         <option value="$PROJECT_DIR$/type_02.py" />
         <option value="$PROJECT_DIR$/type_03.py" />
@@ -109,6 +118,7 @@
         <option value="$PROJECT_DIR$/Request/request_01.py" />
         <option value="$PROJECT_DIR$/Request/request_02.py" />
         <option value="$PROJECT_DIR$/Request/request_03.py" />
+        <option value="$PROJECT_DIR$/Request/request_04.py" />
       </list>
     </option>
   </component>
@@ -292,13 +302,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/function_default.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/function_mutable.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
@@ -652,11 +655,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Request/request_03.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+        <state relative-caret-position="169">
+          <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding>
             <element signature="e#16#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Request/request_04.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
