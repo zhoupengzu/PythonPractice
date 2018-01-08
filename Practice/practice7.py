@@ -2,11 +2,12 @@
 # python里面没有块级作用域  
 # 只有函数才能形成一个作用域
 # 作用域都是相对来说的
+# global只能修饰全局变量，对于嵌套不好使
 
 c = 10
 def scope():
     # c = c +1  #这里不能修改全局变量
-    global c  # 要使用该相对来说的全局变量，则需要提前使用global修饰，然后才能修改其值
+    global c  # 要使用全局变量，则需要提前使用global修饰，然后才能修改其值
     c = c + 1
     for x in range(1, 5, 2):
         a = 'a'
@@ -19,11 +20,13 @@ def scope():
 scope()
 print(c)
 
-
+# 下面的代码有问题哦，不能使用global，只能打印，不能修改
 def func1():
-    c = 10
+    d = 10
     def func2():
-        global c
-        c = c + 2
+        print('d:',d)
+        # global d
+        # d = d + 2
+
     func2()
 func1()
