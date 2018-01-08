@@ -4,7 +4,7 @@
 # 作用域都是相对来说的
 # global只能修饰全局变量，对于嵌套不好使
 
-c = 10
+
 def scope():
     # c = c +1  #这里不能修改全局变量
     global c  # 要使用全局变量，则需要提前使用global修饰，然后才能修改其值
@@ -17,6 +17,8 @@ def scope():
     print(a) # a
     print(b) # b
 
+
+# c = 10 # c也可以放在这里
 scope()
 print(c)
 
