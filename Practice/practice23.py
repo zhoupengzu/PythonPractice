@@ -8,6 +8,9 @@ def convert(value):
     print(value.group())  # C# 获取匹配到的值
     return "Function"
 
+def convert_num(value):
+    print(value.group())
+    return 'xx'
 
 language = 'C#PythonC#JavaC#PHP'
 
@@ -20,3 +23,7 @@ print(language)  # C#PythonC#JavaC#PHP
 language = re.sub('C#', convert, language, 1)
 print(language)  # 当什么都不返回的时候，打印PythonJavaPHP，当返回为Function时，打印为FunctionPythonC#JavaC#PHP
 
+temp = 'a28d24ef3w22k334'
+print(re.findall('a(\d{2})', temp))  # ['28']
+temp = re.sub('a\d{2,}', convert_num, temp)
+print(temp)
