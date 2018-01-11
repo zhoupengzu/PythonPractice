@@ -1,5 +1,6 @@
 
 from itertools import combinations
+# combinations 用于求序列的组合
 
 origin_list1 = ['11','11','11','11','11']
 change_list1 = list(combinations(origin_list1, 2))  # 该方法可以将一个可遍历对象分解成不同的元祖，元祖的长度就是函数的第二个参数
@@ -26,3 +27,8 @@ else:
             find_count += 1
     answer = find_count / len(elements)
     print(answer)
+
+str = '1 1000'
+print(str.split(' '))
+map1 = list(map(lambda ch: int(ch), str.split(' ')))
+print(type(map1[0]))
