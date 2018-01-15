@@ -2,7 +2,7 @@
 # 使用两个**表示
 
 def printCityInfo(**cityInfo):
-    print(cityInfo)
+    print(cityInfo.get('bg'))
     print(type(cityInfo))  # <class 'dict'>
     for key, value in cityInfo.items():
         print(key, ':', value)
