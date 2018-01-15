@@ -4,12 +4,13 @@
 from itertools import product
 # product 用于求多个可迭代对象的笛卡尔积，它跟嵌套的 for 循环等价
 list1 = ['A', 'B', 'C']  # [('A', 'B', 'C')]
-print(list(product(*list1)))
+print('=============================')
+print(list(product(list1)))  # [('A',), ('B',), ('C',)]
 # print(list1)
-print(list(product(*list1,'XYZ'))) # [('A', 'B', 'C', 'X'), ('A', 'B', 'C', 'Y'), ('A', 'B', 'C', 'Z')]
+print(list(product(list1,'XYZ')))  # [('A', 'X'), ('A', 'Y'), ('A', 'Z'), ('B', 'X'), ('B', 'Y'), ('B', 'Z'), ('C', 'X'), ('C', 'Y'), ('C', 'Z')]
 list2 = [['A', 'B'], ['C', 'D'], 'E'] # [('A', 'C', 'E'), ('A', 'D', 'E'), ('B', 'C', 'E'), ('B', 'D', 'E')]
-print(list(product(*list2)))
-print(list(product(*list2, 'XYZ')))
+print(list(product(list2)))
+print(list(product(list2, 'XYZ')))
 # product(*list2, repeat=2)和product(*list2, *list2)相同
 
 # print(tuple({'A':1}))
