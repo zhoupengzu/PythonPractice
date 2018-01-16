@@ -13,4 +13,6 @@ print(list(filter(filter_func, a1)))
 
 # 列表推导式
 r1 = [a**2 for a in a1 if a > 5]
+r1_1 = {a**2 for a in a1 if a > 5}
 print(r1)
+print(r1_1)
