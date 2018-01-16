@@ -4,4 +4,5 @@ import re
 
 a = 'pythonpythonpythonpython'
 # 判断字符串中是否包含三个python
-print(re.findall('(python){3}', a))  # ['python']
+print(re.findall('(n+?)(p+?)', a))  # [('n', 'p'), ('n', 'p'), ('n', 'p')]
+print(re.findall('(n+?)|(p+?)', a)) # [('', 'p'), ('n', ''), ('', 'p'), ('n', ''), ('', 'p'), ('n', ''), ('', 'p'), ('n', '')]
