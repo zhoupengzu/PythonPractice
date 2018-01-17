@@ -22,7 +22,10 @@ if remove_value1 in list1:  # remove之前需要先确定列表中是否存在�
     list1.remove(remove_value1)
 elif 4 in list1:
     pass
-print(list1) 
+print(list1)
+print('list to str:')
+print(str(list1)) 
+
 # 平均数
 print('平均数:')
 scores = [52,56,60,99,80]

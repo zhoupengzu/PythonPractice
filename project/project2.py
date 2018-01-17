@@ -14,7 +14,6 @@ Size: 7 x 21
     ---------.|.---------
 '''
 
-
 class Door():
     BASE_WORD = 'WELCOME'
     BASW_LINE = '-'
@@ -46,3 +45,13 @@ class Door():
 
 door = Door(7)
 door.all_str()
+
+# 方法二：
+N, M = [7, 21]
+up_str = ''
+center_str = '\n' + 'WELCOME'.center(M, '-') + '\n'
+for num in range(N // 2):
+    up_str = up_str + ('.|.' * (2 * num + 1)).center(M, '-') + \
+        ('\n' if num != N // 2 - 1 else '')
+
+print(up_str + center_str + up_str[::-1])
