@@ -22,4 +22,25 @@ September 2016.".
 如果键已经存在于字典内，为键所对应的值加上对应数值；
 如果键不存在于字典内，将此键加入字典，并将它的值设为给定值。
 """
+phone_time_dic = {}
+
+def add_phone_time(t=0, *phones):
+    for phone in phones:
+        if phone in phone_time_dic:
+            phone_time_dic[phone] = phone_time_dic[phone] + t
+        else:
+            phone_time_dic[phone] = t
+
+
+for call_info in calls:
+    add_phone_time(call_info[-1],*[call_info[0], call_info[1]])
+
+phone_time_dic = {value:key for key,value in phone_time_dic.items()}
+phone_time_list = phone_time_dic.keys()
+sorted(phone_time_list)
+phone_time_list = list(phone_time_list)
+max_long_time = phone_time_list[0]
+result = "{phone} spent the longest time, {use_time} seconds, on the phone during September 2016.".format(
+    phone=phone_time_dic[max_long_time], use_time = max_long_time)
+print(result)
 
