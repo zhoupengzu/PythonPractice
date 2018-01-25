@@ -19,4 +19,17 @@ with open('calls.csv', 'r') as f:
 "First record of texts, <incoming number> texts <answering number> at time <time>"
 "Last record of calls, <incoming number> calls <answering number> at time <time>, lasting <during> seconds"
 """
+if len(texts) > 0:
+    first_msg_info = texts[0]
+    first_msg = "First record of texts, " + \
+        first_msg_info[1] + " texts " + first_msg_info[1] + \
+        " at time " + first_msg_info[0]
+    print(first_msg)
+
+calls_count = len(calls)
+if calls_count > 0:
+    last_call_info = calls[calls_count - 1]
+    last_call_msg = "Last record of calls, {} calls {} at time {}, lasting {} seconds".format(
+        last_call_info[0], last_call_info[1], last_call_info[2], last_call_info[3])
+    print(last_call_msg)
 
