@@ -39,3 +39,35 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
+# 第一部分
+from_bangalore = set()
+for call_info in calls:
+    call_phone = call_info[0]
+    if call_phone.startswith('(080)'):
+        from_bangalore.add(call_info[1])
+
+def map_for_logo(phone):
+    temp = phone
+    if phone.startswith('(0'):
+        temp = temp.replace('(', '')
+        temp = temp.replace(')', '')
+        temp = temp[:3]
+    elif phone.startswith('140'):
+        temp = ""
+    else:
+        temp = temp[:4]  
+    return temp
+
+
+from_bangalore = set(map(map_for_logo, from_bangalore))
+from_bangalore = set(filter(lambda phone:phone != '', from_bangalore))
+for phone in from_bangalore:
+    print(phone)
+
+# 第二部分
+from_bangalore_list = list(from_bangalore)
+bangalore_count = from_bangalore_list.count('080')
+result_perc = "{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
+    bangalore_count / len(from_bangalore_list) * 100)
+print(result_perc)
+
