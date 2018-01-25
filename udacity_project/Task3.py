@@ -61,11 +61,12 @@ def map_for_logo(phone):
 
 from_bangalore = set(map(map_for_logo, from_bangalore))
 from_bangalore = set(filter(lambda phone:phone != '', from_bangalore))
+from_bangalore_list = list(from_bangalore)
+from_bangalore_list.sort()
 for phone in from_bangalore:
     print(phone)
 
 # 第二部分
-from_bangalore_list = list(from_bangalore)
 bangalore_count = from_bangalore_list.count('080')
 result_perc = "{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
     bangalore_count / len(from_bangalore_list) * 100)
