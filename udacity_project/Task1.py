@@ -20,12 +20,12 @@ with open('calls.csv', 'r') as f:
 """
 all_phones = set()
 for text_info in texts:
-    all_phones.add(text_info[0].strip())
-    all_phones.add(text_info[1].strip())
+    all_phones.add(text_info[0])
+    all_phones.add(text_info[1])
 
-for call_info in texts:
-    all_phones.add(call_info[0].strip())
-    all_phones.add(call_info[1].strip())
+for call_info in calls:
+    all_phones.add(call_info[0])
+    all_phones.add(call_info[1])
 result_msg = "There are {} different telephone numbers in the records.".format(len(all_phones))
 print(result_msg)
-print(all_phones)
+
