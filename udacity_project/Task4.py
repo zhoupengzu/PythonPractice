@@ -25,22 +25,37 @@ with open('calls.csv', 'r') as f:
 <list of numbers>
 电话号码不能重复，每行打印一条，按字典顺序排序后输出。
 """
-telemarketers_phone = set()
-for call_info in calls:
-    if call_info[0].startswith('140'):
-        telemarketers_phone.add(call_info[0])
-
-# 去除
-for call_info in calls:
-    if call_info[1] in telemarketers_phone:
-        telemarketers_phone.remove(call_info[1])
+# 所有给别人发短信的电话
+all_msg_others_phone = set()
+# 所有接收短信的电话
+all_receive_msg_phone = set()
+# 所有的主动的拨打电话
+all_call_phone = set()
+# 所有的被叫用户
+all_called_phone = set()
 for msg_info in texts:
-    if msg_info[0] in telemarketers_phone:
-        telemarketers_phone.remove(msg_info[0])
-    if msg_info[1] in telemarketers_phone:
-        telemarketers_phone.remove(msg_info[1])
+    all_msg_others_phone.add(msg_info[0])
+    all_msg_others_phone.add(msg_info[1])
 
-telemarketers_phone_list = list(telemarketers_phone)
+for call_info in  calls:
+    all_call_phone.add(call_info[0])
+    all_called_phone.add(call_info[1])
+
+# 在主动拨打电话里剔除主动发短信的
+for phone in all_msg_others_phone:
+    if phone in all_call_phone:
+        all_call_phone.remove(phone)
+
+# 在主动拨打电话里剔除接收短信的
+for phone in all_receive_msg_phone:
+    if phone in all_call_phone:
+        all_call_phone.remove(phone)
+# 在主动拨打电话里剔除接到过电话的
+for phone in all_called_phone:
+    if phone in all_call_phone:
+        all_call_phone.remove(phone)
+
+telemarketers_phone_list = list(all_call_phone)
 telemarketers_phone_list.sort()
 print("These numbers could be telemarketers: ")
 for phone in telemarketers_phone_list:
