@@ -54,8 +54,8 @@ def map_for_logo(phone):
     if phone.startswith('(0'):
         end_index = temp.index(')')
         temp = temp[1:end_index]
-    elif phone.startswith('140'):
-        temp = ""
+    # elif phone.startswith('140'):
+    #     temp = ""
     else:
         temp = temp[:4]  
     return temp

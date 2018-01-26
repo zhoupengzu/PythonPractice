@@ -39,7 +39,6 @@ phone_time_dic = {value:key for key,value in phone_time_dic.items()}
 phone_time_list = phone_time_dic.keys()
 phone_time_list = sorted(phone_time_list, reverse=True)
 phone_time_list = list(phone_time_list)
-print(phone_time_list)
 max_long_time = phone_time_list[0]
 result = "{phone} spent the longest time, {use_time} seconds, on the phone during September 2016.".format(
     phone=phone_time_dic[max_long_time], use_time = max_long_time)
