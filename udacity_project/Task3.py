@@ -3,6 +3,7 @@
 你将在以后的课程中了解更多有关读取文件的知识。
 """
 import csv
+from functools import reduce
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -40,35 +41,42 @@ to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
 # 第一部分
-from_bangalore = set()
+from_bangalore = []
 for call_info in calls:
     call_phone = call_info[0]
     if call_phone.startswith('(080)'):
-        from_bangalore.add(call_info[1])
+        from_bangalore.append(call_info[1])
+
+all_phone_count = len(from_bangalore) # 拨出的电话个数
 
 def map_for_logo(phone):
     temp = phone
     if phone.startswith('(0'):
-        temp = temp.replace('(', '')
-        temp = temp.replace(')', '')
-        temp = temp[:3]
+        end_index = temp.index(')')
+        temp = temp[1:end_index]
     elif phone.startswith('140'):
         temp = ""
     else:
         temp = temp[:4]  
     return temp
 
+def count_receive_080(sum, phone_pre):
+    if phone_pre == '080':
+        sum = sum + 1
+    return sum
 
-from_bangalore = set(map(map_for_logo, from_bangalore))
-from_bangalore = set(filter(lambda phone:phone != '', from_bangalore))
-from_bangalore_list = list(from_bangalore)
+from_bangalore = list(map(map_for_logo, from_bangalore))
+bangalore_count = reduce(count_receive_080, from_bangalore, 0)  # 接收是080的个数
+
+from_bangalore_set = set(map(map_for_logo, from_bangalore))
+from_bangalore_set = set(filter(lambda phone: phone != '', from_bangalore_set))
+from_bangalore_list = list(from_bangalore_set)
 from_bangalore_list.sort()
-for phone in from_bangalore:
+for phone in from_bangalore_list:
     print(phone)
 
-# 第二部分
-bangalore_count = from_bangalore_list.count('080')
+# # 第二部分
 result_perc = "{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
-    bangalore_count / len(from_bangalore_list) * 100)
+    bangalore_count / all_phone_count * 100)
 print(result_perc)
 
