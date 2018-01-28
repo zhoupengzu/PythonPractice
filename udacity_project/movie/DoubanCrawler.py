@@ -49,9 +49,10 @@ with open("movies.csv", 'w', encoding='gb18030') as f:
     for movie_info in all_movies:
         for category_movie in movie_info:
             for location_movie in category_movie:
-                info_arr = [location_movie.get(
-                    Movie.NAME, ""), location_movie.get(Movie.RATE, ""), location_movie.get(Movie.LOCATION, ""), location_movie.get(Movie.CATEGORY, ""), location_movie.get(Movie.INFO_LINK, ""), location_movie.get(Movie.COVER_LINK, "")]
-                csv_writer.writerow(info_arr)
+                if location_movie.get(Movie.NAME, '') or location_movie.get(Movie.RATE, '') or location_movie.get(Movie.INFO_LINK, '') or location_movie.get(Movie.COVER_LINK, ''):
+                    info_arr = [location_movie.get(
+                        Movie.NAME, ""), location_movie.get(Movie.RATE, ""), location_movie.get(Movie.LOCATION, ""), location_movie.get(Movie.CATEGORY, ""), location_movie.get(Movie.INFO_LINK, ""), location_movie.get(Movie.COVER_LINK, "")]
+                    csv_writer.writerow(info_arr)
 
 print("构造完成")
 print("开始统计电影数据...")
