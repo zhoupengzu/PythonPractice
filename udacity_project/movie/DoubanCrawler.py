@@ -13,6 +13,7 @@ movie = MovieTool()
 all_category = movie.getLocationAndCategory(MovieTool.ALL_CATEGORY)
 all_location = movie.getLocationAndCategory(MovieTool.ALL_LOCATION)
 print(all_location)
+print(all_category)
 print("获取全部类型和全部地区完成")
 # 为防止被封，睡眠2秒
 print("==========================")
