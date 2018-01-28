@@ -66,6 +66,8 @@ class MovieTool(object):
                 elif 'rate' in span['class']:
                     rate = span.string
             result.append(self.__convertToMovie(info_link = info_link, cover_link = cover_link, name = title, rate = rate))    
+        if len(result) == 0:
+            result.append(self.__convertToMovie())
         return result
 
     def __convertToMovie(self, **args):

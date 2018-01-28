@@ -29,7 +29,7 @@ for index in range(all_cycle_count):
     category = all_category[index]
     category_movies_list = []  # 每个分类下的
     for location in all_location:
-        print("获取类型：{},地区：{}".format(category, location))
+        print("正在获取类型：{},地区：{}".format(category, location))
         temp_movie = MovieTool(category = category, location = location, load_more = True)
         location_movies = temp_movie.getMovies()
         location_movies_list = [] # 每个地区下的
@@ -54,7 +54,7 @@ with open("movies.csv", 'w', encoding='gb18030') as f:
 
 print("构造完成")
 print("开始统计电影数据...")
-
+result = ""
 for category_movies in all_movies:
     category_movies.sort(key=lambda item: len(item), reverse=True)
     # 获取该类别的电影总数
@@ -64,24 +64,29 @@ for category_movies in all_movies:
     max_count = len(category_movies[0])
     count = 0 # 用来表示找到了第几个最大的数
     for index in range(len(category_movies)):
-        location_moives = category_movies[index]
-        if len(location_moives) < max_count:
-            max_count = len(location_moives)
+        location_movies = category_movies[index]
+        if len(location_movies) < max_count:
+            max_count = len(location_movies)
             count += 1
-        
         if count > 2:
             break
         else:
-            most_three_list.append(location_moives)
-
-    with open("output.txt", 'a') as f:
-        for location_movies in most_three_list:
-            if len(location_moives) == 0:
-                continue
-            location = location_moives[0].get(Movie.LOCATION,"")
-            result =  "地区：{}, 百分比:{:.2f}\n".format(location, len(location_moives) / category_movies_count * 100)
-            f.write(result)
+            most_three_list.append(location_movies)
+    for location_movies in most_three_list:
+        if len(location_movies) == 0:
+            continue
+        locationDic = location_movies[0]
+        if locationDic.get(Movie.NAME, '') or locationDic.get(Movie.RATE, '') or locationDic.get(Movie.INFO_LINK, '') or locationDic.get(Movie.COVER_LINK, ''):
+            location = locationDic.get(Movie.LOCATION, "")
+            result = result + "地区：{}, 百分比:{:.2f}\n".format(
+            location, len(location_movies) / category_movies_count * 100)
+        else:
+            result = result + "地区：{}, 百分比:{:.2f}\n".format(
+                location, 0)
         
+        
+with open("output.txt", 'w') as f:
+     f.write(result)
             
 print("统计完成")
 
