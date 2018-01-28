@@ -11,10 +11,15 @@ class MovieTool(object):
     # 获取豆瓣电影的基础url
     BASE_URL = "https://movie.douban.com/tag/#/?sort=S&range=9,10&tags=电影"
     HTML_PARSER = "html.parser"
+    ALL_CATEGORY = "全部类型"
+    ALL_LOCATION = "全部地区"
 
-    def __init__(self, category = "", location = ""):
+    def __init__(self, category = "", location = "", load_more = False):
         self.__category = category
         self.__location = location
+        self.__all_html = self.__getHtml(load_more=load_more)
+        self.__all_category = {}
+        self.__getAllLocationAndCategory()
 
     def __organizeMovieUrl(self, *args):
         '''
@@ -39,12 +44,12 @@ class MovieTool(object):
         html = expanddouban.getHtml(url, load_more)
         return html
 
-    def __analysisHtml(self, html=""):
+    def __analysisMovieHtml(self):
         '''
         解析拿到的html
         '''
         result = []
-        soup = BeautifulSoup(html, MovieTool.HTML_PARSER)
+        soup = BeautifulSoup(self.__all_html, MovieTool.HTML_PARSER)
         app_div = soup.find(id = "app")
         list_wp = app_div.find(class_ = "list-wp")
         all_link = list_wp.find_all('a', recursive = False)
@@ -67,17 +72,44 @@ class MovieTool(object):
         movie = Movie(**args, category= self.__category, location=self.__location)
         return movie
 
-    @classmethod
-    def getMovies(cls, category="", location="", load_more = False):
+    def __getAllLocationAndCategory(self):
+        soup = BeautifulSoup(self.__all_html, MovieTool.HTML_PARSER)
+        all_category = soup.find_all("ul",attrs={"class":"category"})
+        category_dic = {}
+        for category in all_category:
+            category_span = category.find_all("span")
+            category_str = ""
+            for index in range(len(category_span)):
+                span = category_span[index]
+                span_str = span.string
+                if not category_str:
+                    category_str = span_str
+                # 这里要剔除类似于“全部类型”之类的
+                if not category_str:
+                    category_str = ""
+                    continue
+                if not span_str:
+                    continue
+                if index == 0:
+                    category_dic[category_str] = []
+                else:
+                    temp_category_list = category_dic.get(category_str, [])
+                    temp_category_list.append(span_str)
+                    category_dic[category_str] = temp_category_list
+        self.__all_category = category_dic
+                
+    def getHtml(self):
+        return self.__all_html
+    
+    def getLocationAndCategory(self, key_words = ""):
+        return self.__all_category.get(key_words, self.__all_category)
+
+    def getMovies(self):
         '''
         返回获得的豆瓣的电影信息
         该结果以列表的形式返回，每一项都是一个Movie对象
         '''
-        tool = MovieTool(category, location)
-        all_html = tool.__getHtml(load_more=load_more)
-        result = tool.__analysisHtml(all_html)
-        for movie in result:
-            movie.printInfo()
+        result = self.__analysisMovieHtml()
         return result
 
 
