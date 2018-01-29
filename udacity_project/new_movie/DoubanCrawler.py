@@ -146,29 +146,21 @@ class MovieTool(object):
 
 
 # 先获取所有的地区
-# print("开始获取全部类型和全部地区：")
 movie = MovieTool()
 all_category = movie.getLocationAndCategory(MovieTool.ALL_CATEGORY)
 all_location = movie.getLocationAndCategory(MovieTool.ALL_LOCATION)
-# print(all_location)
-# print(all_category)
-# print("获取全部类型和全部地区完成")
 # 为防止被封，睡眠2秒
-# print("==========================")
 time.sleep(2)
-# all_location = ['美国', '香港', '台湾']
 all_cycle_count = 3
 if len(all_category) < 3:
     all_cycle_count = len(all_category)
 
-# print("开始获取电影信息...")
 # 取前面的至多3个类型
 all_movies = []
 for index in range(all_cycle_count):
     category = all_category[index]
     category_movies_list = []  # 每个分类下的
     for location in all_location:
-        # print("正在获取类型：{},地区：{}".format(category, location))
         temp_movie = MovieTool(category = category, location = location, load_more = True)
         location_movies = temp_movie.getMovies()
         location_movies_list = [] # 每个地区下的
@@ -178,10 +170,7 @@ for index in range(all_cycle_count):
         time.sleep(2)
     all_movies.append(category_movies_list)
 
-# print("获取电影信息完成")
-# print("开始构造电影信息数据表...")
 with open("movies.csv", 'w', encoding='gb18030') as f:
-    # f.write(codecs.BOM_UTF8)
     csv_writer = csv.writer(f)
     
     for movie_info in all_movies:
@@ -192,8 +181,6 @@ with open("movies.csv", 'w', encoding='gb18030') as f:
                         Movie.NAME, ""), location_movie.get(Movie.RATE, ""), location_movie.get(Movie.LOCATION, ""), location_movie.get(Movie.CATEGORY, ""), location_movie.get(Movie.INFO_LINK, ""), location_movie.get(Movie.COVER_LINK, "")]
                     csv_writer.writerow(info_arr)
 
-# print("构造完成")
-# print("开始统计电影数据...")
 result = ""
 for category_movies in all_movies:
     category_movies.sort(key=lambda item: len(item), reverse=True)
@@ -227,6 +214,4 @@ for category_movies in all_movies:
         
 with open("output.txt", 'w', encoding='utf-8') as f:
      f.write(result)
-            
-# print("统计完成")
 

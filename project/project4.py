@@ -27,7 +27,38 @@ e-d-c-b-a-b-c-d-e
 import string
 
 str1 = string.ascii_lowercase
-print(str1.join('-'))
+alpha_list = list(str1)
+
 
 def print_rangoli(size):
-    alpha = 1
+    rows = 2 * size - 1
+    cols = 2 * size - 1 + 2 * (size - 1)
+    all_str_list = []
+    mid = rows // 2
+    end_index = size
+    for row in range(rows):
+        if row <= mid:
+            mid_str = "-" + alpha_list[size - row - 1] + "-"
+            right_list = alpha_list[end_index - row:end_index]
+            right_str = "-".join(right_list)
+            left_str = right_str[::-1]
+            all_str_list.append(left_str + mid_str + right_str)
+        else:
+            mid_str = "-" + alpha_list[row - mid] + "-"
+            begin_index = row - mid + 1
+            right_list = alpha_list[begin_index: size]
+            right_str = "-".join(right_list)
+            left_str = right_str[::-1]
+            all_str_list.append(left_str + mid_str + right_str)
+
+    for item in all_str_list:
+        print(item.center(cols,"-"))
+
+print_rangoli(1)
+    
+            
+
+
+
+
+
