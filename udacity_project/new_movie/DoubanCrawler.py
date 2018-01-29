@@ -2,9 +2,7 @@
 
 import time
 import csv
-import codecs
 from functools import reduce
-import requests
 import expanddouban
 from bs4 import BeautifulSoup
 
@@ -30,7 +28,6 @@ class Movie():
     def printInfo(self):
         descri = "姓名:{},分数:{},地区:{},分类:{},链接:{},海报:{}".format(
             self.__name, self.__rate, self.__location, self.__category, self.__info_link, self.__cover_link)
-        print(descri)
 
     def getSingleInfoWithDic(self):
         return {Movie.NAME: self.__name, Movie.RATE: self.__rate, Movie.LOCATION: self.__location, Movie.CATEGORY: self.__category, Movie.INFO_LINK: self.__info_link, Movie.COVER_LINK: self.__cover_link}
@@ -144,6 +141,8 @@ class MovieTool(object):
         '''
         result = self.__analysisMovieHtml()
         return result
+    def getMovieUrl(self):
+        return self.__getMovieUrl()
 
 
 # 先获取所有的地区
@@ -157,7 +156,7 @@ all_location = movie.getLocationAndCategory(MovieTool.ALL_LOCATION)
 # 为防止被封，睡眠2秒
 # print("==========================")
 time.sleep(2)
-all_location = ['美国', '香港', '台湾']
+# all_location = ['美国', '香港', '台湾']
 all_cycle_count = 3
 if len(all_category) < 3:
     all_cycle_count = len(all_category)
@@ -219,14 +218,14 @@ for category_movies in all_movies:
         locationDic = location_movies[0]
         if locationDic.get(Movie.NAME, '') or locationDic.get(Movie.RATE, '') or locationDic.get(Movie.INFO_LINK, '') or locationDic.get(Movie.COVER_LINK, ''):
             location = locationDic.get(Movie.LOCATION, "")
-            result = result + "地区：{}, 百分比:{:.2f}\n".format(
-            location, len(location_movies) / category_movies_count * 100)
+            result = result + "地区：{}, 百分比:{:.2%}\n".format(
+            location, len(location_movies) / category_movies_count)
         else:
             result = result + "地区：{}, 百分比:{:.2f}\n".format(
                 location, 0)
         
         
-with open("output.txt", 'w') as f:
+with open("output.txt", 'w', encoding='utf-8') as f:
      f.write(result)
             
 # print("统计完成")
