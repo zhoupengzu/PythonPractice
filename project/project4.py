@@ -31,6 +31,9 @@ alpha_list = list(str1)
 
 
 def print_rangoli(size):
+    if size == 1:
+        print("a")
+        return
     rows = 2 * size - 1
     cols = 2 * size - 1 + 2 * (size - 1)
     all_str_list = []

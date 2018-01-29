@@ -1,7 +1,7 @@
 # 将任何的字符串，将其中的大写字母改为小写，小写字母改为大写的
 
 '''
-isalnum(),isalpha(),isdigit(),islower(),isupper()
+isalnum(),isalpha(),isdigit(),islower(),isupper(),capitalize()
 import textwrap
 textwrap.wrap(str, width=70)
 textwrap.fill(str, width=70)
@@ -19,3 +19,10 @@ def swap_case(s):
     print(s.swapcase())
 
 swap_case("Hello,World")
+
+
+def capitalize(string):
+    str_list = string.split()
+    str_list = list(map(lambda item: item.capitalize(), str_list))
+
+capitalize("helo world")
