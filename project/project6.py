@@ -24,5 +24,6 @@ swap_case("Hello,World")
 def capitalize(string):
     str_list = string.split()
     str_list = list(map(lambda item: item.capitalize(), str_list))
+    print("".join(str_list)
 
-capitalize("helo world")
+capitalize("hello   world  lol")
